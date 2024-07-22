@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Menu Pallet Caffe</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Font Awesome CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .table th, .table td {
+      vertical-align: middle;
+    }
+
+    .summary {
+      background-color: #f7f7f7;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .summary p {
+      margin: 0;
+    }
+
+    .btn-checkout {
+      background-color: #c4b7a5;
+      color: #333;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .btn-checkout:hover {
+      background-color: #333;
+      color: white;
+    }
+
+    .containerr {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+
+    .btn-danger {
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .btn-danger:hover {
+      background-color: #e60000;
+    }
+
+    .cart-summary {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+
+    .cart-summary input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .cart-summary button {
+      padding: 5px 10px;
+      border: none;
+      background-color: #c4b7a5;
+      color: #333;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .cart-summary button:hover {
+      background-color: #333;
+      color: white;
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .summary-item input[type="text"] {
+      width: 100%;
+      max-width: 200px;
+      margin-left: 10px;
+    }
+
+    .summary-item button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="asset/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+        Menu Pallet Caffe
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="halmenu.html">Menu</a>
+          <div class="nav-item cart-badge">
+            <a class="nav-link" href="checkout.html">
+              <img src="asset/cart.png" alt="Cart Image" class="link-image" id="cartImage">
+              <span class="badge bg-danger" id="cartBadge">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="halmenu.html">View Menu</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+    </ol>
+  </nav>
+
+  <div class="containerr">
+    <h1>Checkout</h1>
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Your Bag</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Products</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody id="cartItemsContainer">
+            <!-- Cart items will be displayed here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-4">
+        <h2>Order Summary</h2>
+        <div id="summaryContainer" class="summary">
+          <!-- Total price will be displayed here -->
+        </div>
+        <div class="cart-summary">
+          <form id="checkoutForm" action="check_table.php" method="POST" class="form-inline justify-content-center">
+            <div class="form-group mb-2">
+              <label for="tableNumber" class="sr-only">Table Number</label>
+              <input type="number" class="form-control" id="tableNumber" name="tableNumber" placeholder="Table Number" required>
+            </div>
+            <div id="orderItemsInputs"></div>
+            <button type="button" class="btn btn-primary mb-2" onclick="submitOrder()">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get cart items from localStorage
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    let cartItemsContainer = document.getElementById('cartItemsContainer');
+    let summaryContainer = document.getElementById('summaryContainer');
+    let total = 0;
+
+    // Render cart items
+    function renderCartItems() {
+      cartItemsContainer.innerHTML = '';
+      total = 0;
+
+      cartItems.forEach((item, index) => {
+        let itemPrice = parseFloat(item.price.replace('Rp ', '').replace('.', '').replace(',', '.'));
+        total += itemPrice * item.quantity;
+        let row = `<tr>
+                    <td><img src="${item.image}" alt="${item.name}" style="max-width: 100px;"></td>
+                    <td>${item.name}</td>
+                    <td>
+                      <button class="btn btn-light" onclick="decreaseQuantity(${index})">-</button>
+                      ${item.quantity}
+                      <button class="btn btn-light" onclick="increaseQuantity(${index})">+</button>
+                    </td>
+                    <td>Rp ${itemPrice.toLocaleString()}</td>
+                    <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})"><i class="fas fa-trash-alt"></i></button></td>
+                  </tr>`;
+        cartItemsContainer.innerHTML += row;
+      });
+
+      // Display total price
+      summaryContainer.innerHTML = `<p><strong>${cartItems.length} Products:</strong> Rp ${total.toLocaleString()}</p>
+                                    <p><strong>Total:</strong> Rp ${total.toLocaleString()}</p>`;
+      updateCartBadge();
+    }
+
+    // Decrease item quantity
+    function decreaseQuantity(index) {
+      if (cartItems[index].quantity > 1) {
+        cartItems[index].quantity--;
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        renderCartItems();
+      }
+    }
+
+    // Increase item quantity
+    function increaseQuantity(index) {
+      cartItems[index].quantity++;
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      renderCartItems();
+    }
+
+    // Remove item from cart
+    function removeItem(index) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      renderCartItems();
+    }
+
+    // Submit the order
+    function submitOrder() {
+      let tableNumber = document.getElementById('tableNumber').value;
+      if (tableNumber) {
+        let orderItemsInputs = document.getElementById('orderItemsInputs');
+        orderItemsInputs.innerHTML = '';
+        cartItems.forEach((item, index) => {
+          let itemPrice = parseFloat(item.price.replace('Rp ', '').replace('.', '').replace(',', '.'));
+          orderItemsInputs.innerHTML += `
+              <input type="hidden" name="orderItems[${index}][menu_item]" value="${item.name}">
+              <input type="hidden" name="orderItems[${index}][quantity]" value="${item.quantity}">
+              <input type="hidden" name="orderItems[${index}][price]" value="${itemPrice.toFixed(2)}">
+          `;
+        });
+
+        // Submit the form
+        document.getElementById('checkoutForm').submit();
+      } else {
+        alert('Please enter your table number.');
+      }
+    }
+
+    // Update cart badge
+    function updateCartBadge() {
+      let cartBadge = document.getElementById('cartBadge');
+      cartBadge.textContent = cartItems.length;
+    }
+
+    // Render cart items on page load
+    window.onload = function () {
+      renderCartItems();
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

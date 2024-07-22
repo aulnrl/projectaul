@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receipt - Menu Pallet Caffe</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container mt-4">
+    <h1>Receipt</h1>
+    <div id="receiptDetails"></div>
+  </div>
+
+  <script>
+    function displayReceipt() {
+      const orderData = JSON.parse(localStorage.getItem('orderData'));
+      if (orderData) {
+        const receiptDetails = document.getElementById('receiptDetails');
+        let html = `<h2>Table Number: ${orderData.tableNumber}</h2><ul>`;
+        let total = 0;
+        
+        orderData.items.forEach(item => {
+          let itemTotal = item.quantity * parseFloat(item.price);
+          total += itemTotal;
+          html += `<li>${item.menu_item} - ${item.quantity} x Rp ${parseFloat(item.price).toLocaleString()} = Rp ${itemTotal.toLocaleString()}</li>`;
+        });
+
+        html += `</ul><p><strong>Total:</strong> Rp ${total.toLocaleString()}</p>`;
+        receiptDetails.innerHTML = html;
+
+        // Clear order data from localStorage
+        localStorage.removeItem('orderData');
+      } else {
+        document.getElementById('receiptDetails').innerHTML = "<p>No order data found.</p>";
+      }
+    }
+
+    window.onload = function () {
+      displayReceipt();
+    };
+  </script>
+</body>
+
+</html>

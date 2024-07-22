@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Pallet Caffe</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="asset/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+        Menu Pallet Caffe
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="Index.htm">Home</a>
+          <a class="nav-link" href="halmenu.html">Menu</a>
+          <div class="nav-item cart-badge">
+            <a class="nav-link" href="checkout.html">
+              <img src="asset/cart.png" alt="Cart Image" class="link-image" id="cartImage">
+              <span class="badge" id="cartBadge">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="halmenu.html">Menu</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Non Coffe</li>
+    </ol>
+  </nav>
+  <div class="content">
+    <ul class="list-group">
+      <li class="list-group-item active" aria-current="true">Category menu</li>
+      <li class="list-group-item"> <a href="halmenu.html"> All Menu </a> </li>
+      <li class="list-group-item"> <a href="menu_coffe.html"> Coffe </a> </li>
+      <li class="list-group-item"> <a href="menu_non_coffe.html"> Non Coffe </a></li>
+      <li class="list-group-item"> <a href="menu_makanan.html"> Food </a></li>
+    </ul>
+  </div>
+
+
+
+
+
+    <div class="content">
+    <div class="products">
+
+        <div class="menu-card">
+          <img src="asset/taro.png" alt="taro">
+          <h1>Taro</h1>
+          <p class="price">Rp 26.000</p>
+          <button onclick="addToCart(this)">Add to Cart</button>
+          <a href="detail.php?menu=taro"><button>For detail</button></a>
+        </div>
+        
+          <div class="menu-card">
+            <img src="asset/matcha.png" alt="matcha">
+            <h1>Matcha</h1>
+            <p class="price">Rp 26.000</p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+            <a href="detail.php?menu=matcha"><button>For detail</button></a>
+          </div>
+
+            <div class="menu-card">
+              <img src="asset/coklat.png" alt="coklat">
+              <h1>Chocolate</h1>
+              <p class="price">Rp 26.000</p>
+              <button onclick="addToCart(this)">Add to Cart</button>
+              <a href="detail.php?menu=chocolate"><button>For detail</button></a>
+            </div>
+            
+            <div class="menu-card">
+              <img src="asset/lemon tea.png" alt="lemon tea">
+              <h1>Lemon Tea</h1>
+              <p class="price">Rp 20.000</p>
+              <button onclick="addToCart(this)">Add to Cart</button>
+              <a href="detail.php?menu=lemon"><button>For detail</button></a>
+            </div>
+
+            <div class="menu-card">
+              <img src="asset/lyche.png" alt="lyche tea">
+              <h1>Lyche Tea</h1>
+              <p class="price">Rp 25.000</p>
+              <button onclick="addToCart(this)">Add to Cart</button>
+              <a href="detail.php?menu=lyche"><button>For detail</button></a>
+            </div>
+
+
+            <div class="menu-card">
+              <img src="asset/sunrise.png" alt="sunrise lemonade">
+              <h1>Sunrise Lemoned</h1>
+              <p class="price">Rp 27.000</p>
+              <button onclick="addToCart(this)">Add to Cart</button>
+              <a href="detail.php?menu=sunrise"><button>For detail</button></a>
+            </div>
+
+            <div class="menu-card">
+              <img src="asset/pinkladies.png" alt="Pink ladies">
+              <h1>Pink Ladies</h1>
+              <p class="price">Rp 28.000</p>
+              <button onclick="addToCart(this)">Add to Cart</button>
+              <a href="detail.php?menu=pinkladies"><button>For detail</button></a>
+            </div>
+
+    
+            
+            <div class="menu-card">
+              <img src="asset/bluesea.png" alt="Pallet Coffee">
+              <h1>Blue Sea Lemoned</h1>
+              <p class="price">Rp28.000</p>
+              <button onclick="addToCart(this)">Add to Cart</button>
+              <button onclick="showDetail">For detail</button>
+            </div>
+
+          
+        </div>
+      </div>
+      <div class="alert-box" id="alertBox"></div>
+
+      <script>
+        let cartItems = [];
+    
+        function addToCart(button) {
+          const menuCard = button.closest('.menu-card');
+          const itemName = menuCard.querySelector('h1').innerText;
+          const itemPrice = menuCard.querySelector('.price').innerText;
+    
+          // Check if the item already exists in cartItems
+          let itemIndex = cartItems.findIndex(item => item.name === itemName);
+    
+          if (itemIndex === -1) {
+            // Item does not exist, add it to cartItems
+            cartItems.push({
+              name: itemName,
+              price: itemPrice,
+              quantity: 1,
+              image: menuCard.querySelector('img').src
+            });
+    
+            // Show popup notification
+            showPopup(itemName + ' product added to your cart.', 'success');
+          } else {
+            // Item already exists, increment its quantity
+            cartItems[itemIndex].quantity += 1;
+            showPopup(itemName + ' quantity updated in your cart.', 'success');
+          }
+    
+          // Update cart badge
+          updateCartBadge();
+    
+          // Update localStorage
+          localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    
+          // Render cart items
+          renderCartItems();
+        }
+    
+        function showPopup(message, type = 'success') {
+          const alertBox = document.getElementById('alertBox');
+          alertBox.innerText = message;
+          alertBox.style.backgroundColor = type === 'success' ? 'green' : 'orange';
+          alertBox.style.display = 'block';
+          setTimeout(() => {
+            alertBox.style.display = 'none';
+          }, 3000); // Hide after 3 seconds
+        }
+    
+        function updateCartBadge() {
+          let cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+          document.getElementById('cartBadge').innerText = cartCount;
+        }
+    
+        function renderCartItems() {
+          let cartItemsContainer = document.getElementById('cartItemsContainer');
+          let summaryContainer = document.getElementById('summaryContainer');
+          let total = 0;
+    
+          if (cartItemsContainer) {
+            cartItemsContainer.innerHTML = '';
+            cartItems.forEach((item, index) => {
+              total += parseFloat(item.price.replace('Rp ', '').replace('.', '').replace(',', '')) * item.quantity;
+              let row = `<tr>
+                                      <td><img src="${item.image}" alt="${item.name}" style="max-width: 100px;"></td>
+                                      <td>${item.name}</td>
+                                      <td>${item.quantity}</td>
+                                      <td>${item.price}</td>
+                                      <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button></td>
+                                    </tr>`;
+              cartItemsContainer.innerHTML += row;
+            });
+          }
+    
+          // Tampilkan total harga di summary
+          if (summaryContainer) {
+            summaryContainer.innerHTML = `<p><strong>${cartItems.length} Products:</strong> Rp ${total.toLocaleString()}</p>
+                                                  <p><strong>Total:</strong> Rp ${(total).toLocaleString()}</p>`;
+          }
+        }
+    
+        function removeItem(index) {
+          cartItems.splice(index, 1); // Hapus item dari array
+          localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Simpan kembali ke localStorage
+          renderCartItems(); // Render ulang produk yang tersisa di keranjang
+          updateCartBadge(); // Update badge di navbar
+        }
+    
+        // Initial load from localStorage if available
+        window.onload = function () {
+          let storedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+          if (storedCartItems) {
+            cartItems = storedCartItems;
+            updateCartBadge();
+            renderCartItems(); // Render cart items on load
+          }
+        };
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    
+    </html>
+    

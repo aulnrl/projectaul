@@ -1,0 +1,443 @@
+/* NAVBAR */
+    .navbar {
+      background-color: #252525;
+      
+    }
+
+    .navbar-brand {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+      color: #d3b08a !important;
+      font-size: 25px;
+     
+    }
+
+    .navbar-brand img {
+      border-radius: 50%;
+    }
+
+    .nav-link {
+      color: rgb(203, 197, 197);
+      font-size: 20px;
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      margin-right: 30px;
+    }
+    .nav-link :hover {
+      color: white ;
+      font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+    .cart-badge {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .cart-badge .badge {
+      position: relative;
+      top: -10px;
+      left: -15px;
+      font-size: 12px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 5px;
+      text-align: center;
+      align-content: center;
+    }
+    
+    /* Responsive styles for mobile view */
+    @media (max-width: 767.98px) {
+      .cart-badge .badge {
+        top: -5px; /* Adjust top position for mobile */
+        right: -10px; /* Adjust right position for mobile */
+        font-size: 10px; /* Smaller font size */
+        padding: 2px 4px; /* Smaller padding */
+      }
+    }
+    footer {
+      background-color: #333;
+      color: #ccc;
+      font-size: 12px;
+  }
+  
+  .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+  }
+  
+  .footer-content {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 20px 0;
+  }
+  
+  .footer-section h2 {
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 10px;
+  }
+  
+  .footer-section ul {
+      list-style: none;
+      padding: 0;
+  }
+  
+  .footer-section ul li {
+      margin-bottom: 8px;
+  }
+  
+  .footer-section ul li a {
+      color: #888888;
+      text-decoration: none;
+      font-size: 18px;
+  }
+  
+  .footer-section ul li a:hover {
+      color: #fff;
+  }
+  .whatsap img{
+    width: 17px;
+    height: auto;
+}
+
+.instagram img{
+    width: 16px;
+    height: auto;
+}
+
+
+    .link-image {
+      width: 30px;
+      height: 30px;
+    }
+
+   
+
+
+
+/* Background*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.hero {
+  position: relative;
+  background-image: url('asset/bg3.jpeg'); /* Add your image path */
+  background-size: cover;
+  background-position: center;
+  padding: 10vw; /* Adjusted to be responsive */
+  text-align: center;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Overlay color with transparency */
+  z-index: -1;
+}
+
+/* Custom breadcrumb style */
+.breadcrumb {
+  --bs-breadcrumb-divider: '>';
+}
+
+.breadcrumb-item a {
+  color: #333;
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+  color: rgb(163, 137, 137);
+}
+
+/* Layout styling */
+.main-content {
+  display: flex;
+}
+
+.list-group-container {
+  flex: 1;
+}
+
+.content-container {
+  flex: 3;
+  padding-left: 20px;
+}
+
+
+
+
+
+/* content halaman */
+.content {
+  padding: 20px;
+  background-color: rgb(227, 227, 227);
+  flex-grow: 1;
+  padding: 20px;
+  margin-bottom: -300px;
+
+}
+.content h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-shadow: #0f0e0e;
+  margin-left: 199px;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px;
+  width: 300px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Efek bayangan default */
+  transition: box-shadow 0.3s ease;
+  /* Transisi yang halus */
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
+    /* Bayangan saat di-hover */
+    0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+  width: 100%;
+  height: 325px;
+}
+
+.product-card h4 {
+  margin: 10px 0;
+}
+
+.product-card p {
+  color: #777;
+}
+
+.product-card button {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.product-card button:hover {
+  background-color: #555;
+}
+
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+.link-image {
+  filter: grayscale(100%) brightness(0);
+  transition: filter 0.3s ease;
+}
+
+.link-image:hover {
+  filter: grayscale(100%) brightness(0.5);
+  /* Menjadikan gambar abu-abu saat di-hover */
+}
+
+.link-image:active {
+  filter: grayscale(100%) brightness(0.5);
+  /* Menjadikan gambar abu-abu saat di-click */
+}
+
+.special-desserts {
+  border: 2px solid #ccc;
+  /* Adjust the color and thickness as needed */
+  padding: 20px;
+  border-radius: 10px;
+  /* Optional: to give rounded corners */
+  background-color: #fafafa;
+  /* Optional: to set a background color */
+  margin: 20px;
+  /* Adjust as needed for spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Optional: for a subtle shadow effect */
+}
+
+.special-desserts h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  /* Adjust as needed */
+}
+
+/* Hal menu */
+
+
+
+
+
+.menu-card {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  margin: 10px;
+  width: 300px;
+  height: 450px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 2px 7px rgba(254, 253, 253, 0.1);
+  /* Efek bayangan default */
+  transition: box-shadow 0.3s ease;
+  /* Transisi yang halus */
+padding: 10px 10px;
+ text-align: center;
+
+}
+
+.menu-card h1 {
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #333;
+}
+
+.menu-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
+    /* Bayangan saat di-hover */
+    0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 300px;
+}
+
+
+.menu-card p {
+  color: #777;
+}
+
+.menu-card button {
+  padding: 10px;
+  background-color: #aa926f;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.menu-card button:hover {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.info-detail-button {
+  flex: 1;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.menu-section {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* List Group */
+.containerr {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
+
+.list-group-item {
+  align-items: right;
+  width: 180px;
+  background-color: rgb(255, 250, 250);
+  color: #333;
+  margin-right: 180px;
+  list-style-type: none
+}
+
+.list-group-item a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 5px;
+
+}
+
+.list-group-item a:hover {
+  color: #333;
+  background-color: #e5cca9;
+  text-decoration: none;
+  display: block;
+  padding: 5px;
+
+}
+
+.list-group-item.active {
+  background-color: #e5cca9;
+  padding: 10px;
+  display: block;
+  border: 1px black;
+  color: black;
+}
+
+/* ALERT ADD TO CART */
+.alert-box {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  z-index: 1000;
+  display: none;
+  border-radius: 5px;
+}
+.containerr{
+  border: 2px solid #ccc;
+  /* Adjust the color and thickness as needed */
+  padding: 20px;
+  border-radius: 10px;
+  /* Optional: to give rounded corners */
+  background-color: #fafafa;
+  /* Optional: to set a background color */
+  margin: 20px;
+  /* Adjust as needed for spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Optional: for a subtle shadow effect */
+}
